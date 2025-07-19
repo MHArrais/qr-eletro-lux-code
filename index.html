@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>QR Code para PDF</title>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; }
+    canvas { margin: 10px auto; display: block; }
+  </style>
+</head>
+<body>
+
+  <hr />
+  
+  <h2>1️⃣ QR Code do PDF</h2>
+  <button onclick="generateQR()">Gerar QR Code</button>
+  <canvas id="qrcode-canvas"></canvas>
+
+  <hr />
+
+  <script>
+    function generateQR() {
+      const pdfUrl = 'https://drive.google.com/file/d/1u0l9XdFdaTV-Yy8d33FS7QWhVaKlWd-T/view?usp=sharing'; // window.location.href.replace('index.html', '') + 'sample.pdf';
+      const canvas = document.getElementById("qrcode-canvas");
+      QRCode.toCanvas(canvas, pdfUrl, function (error) {
+        if (error) console.error(error);
+        else console.log("QR Code gerado!");
+      });
+    }
+
+    function onScanSuccess(qrCodeMessage) {
+      if (qrCodeMessage.endsWith(".pdf")) {
+        window.location.href = "pdf-viewer.html?file=" + encodeURIComponent(qrCodeMessage);
+      } else {
+        alert("QR Code inválido.");
+      }
+    }
+
+    new Html5Qrcode("reader").start(
+      { facingMode: "environment" },
+      { fps: 10, qrbox: 250 },
+      onScanSuccess
+    );
+  </script>
+</body>
+</html>
