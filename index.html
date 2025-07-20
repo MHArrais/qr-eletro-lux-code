@@ -2,7 +2,8 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>QR Code para PDF</title>
+  <title>EletroCodeQR</title>
+  <link rel="icon" type="image/png" href="/img/codigo-qr.png" />
   <script src="https://unpkg.com/html5-qrcode"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <style>
@@ -20,6 +21,11 @@
   <canvas id="qrcode-canvas"></canvas>
 
   <hr />
+
+  <footer style="font-weight: bold; font-style: italic; font-size: 12px;">        
+        <span>Todos os difeitos reservados ©</span>
+        <span>Desenvolvido por: <a href="https://mharrais.github.io/Portfolio/" id="ancor-footer" target="_blank">Márcio Henrique</a></span>
+    </footer>
 
   <script>
     function generateQR() {
